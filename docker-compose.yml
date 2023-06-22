@@ -43,8 +43,8 @@ services:
   frontend:
     build: ./frontend
     container_name: webwhiz_frontend
-    ports:
-      - "3030:80"
+    # ports:
+    #   - "3030:80"
     depends_on:
       - web
     labels:
