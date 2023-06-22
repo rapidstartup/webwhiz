@@ -5,37 +5,63 @@ services:
     image: redis:alpine
     expose:
       - "6379"
-
+    networks:
+      - webwhiz-network
   mongodb:
     image: mongo:latest
     expose:
       - "27017"
-
+    networks:
+      - webwhiz-network
   web:
     build: .
     command: node dist/main.js
+    container_name: webwhiz_web
     ports:
       - "3000:3000"
     depends_on:
       - redis
       - mongodb
-
+    networks:
+      - webwhiz-network
   nodejs_worker:
     build: .
     command: node dist/crawler.main.js
     depends_on:
       - redis
       - mongodb
-
+    networks:
+      - webwhiz-network
   python_worker:
     build: ./workers
     depends_on:
       - redis
       - mongodb
+    networks:
+      - webwhiz-network
 
   frontend:
     build: ./frontend
+    container_name: webwhiz_frontend
     ports:
       - "3030:80"
     depends_on:
       - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.frontend.rule=Host(`chat2doc.freesaasportal.com`)"
+      - "traefik.http.frontend.entrypoints=web"
+      - "traefik.http.middlewares.frontend-redirect-web-secure.redirectscheme.scheme=https"
+      - "traefik.http.frontend.middlewares=frontend-redirect-web-secure"
+      - "traefik.http.frontend-secure.rule=Host(`chat2doc.freesaasportal.com`)"
+      - "traefik.http.frontend-secure.entrypoints=websecure"
+      - "traefik.http.frontend-secure.tls=true"
+      - "traefik.http.frontend-secure.tls.certresolver=leresolver"
+    networks:
+      - webwhiz-network
+      - ai-network
+networks:
+  webwhiz-network:
+    driver: bridge
+  ai-network:
+    external: true
