@@ -6,13 +6,13 @@ services:
     expose:
       - "6379"
     networks:
-      - webwhiz-network
+      - default
   mongodb:
     image: mongo:latest
     expose:
       - "27017"
     networks:
-      - webwhiz-network
+      - default
   web:
     build: .
     command: node dist/main.js
@@ -23,7 +23,7 @@ services:
       - redis
       - mongodb
     networks:
-      - webwhiz-network
+      - default
   nodejs_worker:
     build: .
     command: node dist/crawler.main.js
@@ -31,14 +31,14 @@ services:
       - redis
       - mongodb
     networks:
-      - webwhiz-network
+      - default
   python_worker:
     build: ./workers
     depends_on:
       - redis
       - mongodb
     networks:
-      - webwhiz-network
+      - default
 
   frontend:
     build: ./frontend
@@ -58,10 +58,8 @@ services:
       - "traefik.http.frontend-secure.tls=true"
       - "traefik.http.frontend-secure.tls.certresolver=leresolver"
     networks:
-      - webwhiz-network
+      - default
       - ai-network
 networks:
-  webwhiz-network:
-    driver: bridge
   ai-network:
     external: true
