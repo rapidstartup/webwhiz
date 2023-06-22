@@ -1,5 +1,6 @@
 # Fetching the latest node image on apline linux
-FROM node:14-alpine AS builder
+FROM node:14-alpine 
+# AS builder
 
 # Declaring env
 ENV NODE_ENV production
@@ -17,13 +18,13 @@ COPY . .
 COPY .env.docker .env
 
 # Building our application
-RUN npm run build
+CMD ["npm", "run", "start"]
 
 # Fetching the latest nginx image
-FROM nginx:1-alpine
+#FROM nginx:1-alpine
 
 # Copying built assets from builder
-COPY --from=builder /app/build /usr/share/nginx/html
+#COPY --from=builder /app/build /usr/share/nginx/html
 
 # Copying our nginx.conf
 # COPY nginx.conf /etc/nginx/conf.d/default.conf
