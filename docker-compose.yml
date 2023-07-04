@@ -53,6 +53,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.frontend.rule=Host(`chat.rapidagent.ai)"
       # - "providers.docker.network=ai-network"
+      - traefik.port=80
       - "traefik.http.frontend.entrypoints=web"
       - "traefik.http.middlewares.frontend-redirect-web-secure.redirectscheme.scheme=https"
       - "traefik.http.frontend.middlewares=frontend-redirect-web-secure"
