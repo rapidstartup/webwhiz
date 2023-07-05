@@ -15,7 +15,7 @@ RUN npm install
 # Copying all the files in our project
 COPY . .
 COPY .env.docker .env
-EXPOSE 3030
+# EXPOSE 3030
 # Building our application
 # RUN npm run build
 CMD ["npm", "run", "start"]
@@ -29,7 +29,7 @@ CMD ["npm", "run", "start"]
 # COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # # Expose port
-# EXPOSE 80
+EXPOSE 80
 # EXPOSE 3030
 
 # # Start nginx
