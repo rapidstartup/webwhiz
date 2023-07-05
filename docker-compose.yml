@@ -20,7 +20,7 @@ services:
       - redis
       - mongodb
     volumes:
-      - /etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf
 
   nodejs_worker:
     build: .
