@@ -15,22 +15,22 @@ RUN npm install
 # Copying all the files in our project
 COPY . .
 COPY .env.docker .env
-
-# Building our application
-RUN npm run build
-
-# Fetching the latest nginx image
-FROM nginx:1-alpine
-
-# Copying built assets from builder
-COPY --from=builder /app/build /usr/share/nginx/html
-
-# Copying our nginx.conf
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Expose port
-EXPOSE 80
 EXPOSE 3030
+# Building our application
+# RUN npm run build
+CMD ["npm", "run", "start"]
+# # Fetching the latest nginx image
+# FROM nginx:1-alpine
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# # Copying built assets from builder
+# COPY --from=builder /app/build /usr/share/nginx/html
+
+# # Copying our nginx.conf
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# # Expose port
+# EXPOSE 80
+# EXPOSE 3030
+
+# # Start nginx
+# CMD ["nginx", "-g", "daemon off;"]
