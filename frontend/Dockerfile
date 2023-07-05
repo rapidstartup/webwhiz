@@ -30,6 +30,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/ssl-params.conf
 COPY t99ltd.info.crt /etc/ssl/certs/t99ltd.info.crt
 COPY t99ltd.info.key /etc/ssl/certs/t99ltd.info.key
+COPY dhparam.pem /etc/nginx/dhparam.pem
 
 # Expose port
 EXPOSE 80
