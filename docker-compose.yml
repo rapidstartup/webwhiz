@@ -49,6 +49,8 @@ services:
       - "3030:80"
     depends_on:
       - web
+    # expose:
+    #   - 80
     labels:
       - "traefik.enable=true"
       # - "traefik.port=80"
@@ -61,7 +63,7 @@ services:
       - "traefik.http.frontend-secure.entrypoints=websecure"
       - "traefik.http.frontend-secure.tls=true"
       - "traefik.http.frontend-secure.tls.certresolver=leresolver"
-      - "traefik.http.services.frontend.loadbalancer.server.port=80"
+      - "traefik.http.services.frontend.loadbalancer.server.port=3030"
     networks:
       - default
       - ai-network
