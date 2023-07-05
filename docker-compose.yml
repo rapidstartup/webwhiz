@@ -36,6 +36,6 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "3030:80"
+      - "80:80"
     depends_on:
       - web
