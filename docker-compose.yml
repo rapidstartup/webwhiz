@@ -21,6 +21,7 @@ services:
       - mongodb
     volumes:
       - ./nginx:/etc/nginx/
+      - ./certbot/www:/var/www/certbot/:ro
 
   nodejs_worker:
     build: .
@@ -42,3 +43,7 @@ services:
       - "443:443"
     depends_on:
       - web
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
