@@ -30,7 +30,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port
 EXPOSE 80
-
+EXPOSE 3030
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
