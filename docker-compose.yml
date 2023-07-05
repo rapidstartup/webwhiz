@@ -19,6 +19,8 @@ services:
     depends_on:
       - redis
       - mongodb
+    volumes:
+      - ./nginx:/etc/nginx/nginx.conf
 
   nodejs_worker:
     build: .
