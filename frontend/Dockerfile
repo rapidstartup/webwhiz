@@ -28,8 +28,8 @@ COPY --from=builder /app/build /usr/share/nginx/html
 # Copying our nginx.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf 
 COPY nginx.conf /etc/nginx/conf.d/ssl-params.conf
-COPY t99ltd.info.crt /etc/ssl/certs/t99ltd.info.crt
-COPY t99ltd.info.key /etc/ssl/certs/t99ltd.info.key
+COPY chat.rapidagent.ai.crt /etc/ssl/certs/chat.rapidagent.ai.crt
+COPY chat.rapidagent.ai.key /etc/ssl/certs/chat.rapidagent.ai.key
 COPY dhparam.pem /etc/nginx/dhparam.pem
 
 # Expose port
