@@ -19,7 +19,7 @@ interface AppConfig {
 
 const config = (): AppConfig => ({
   nodeEnv: (process.env.NODE_ENV as any) || 'development',
-  host: process.env.HOST || '127.0.0.1',
+  host: process.env.HOST || '0.0.0.0',
   port: parseInt(process.env.PORT as string, 10) || 8000,
   secretKey: process.env.SECRET_KEY || 'secret',
   mongoUri: process.env.MONGO_URI || 'mongodb://localhost:27017',
